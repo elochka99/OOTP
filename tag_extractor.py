@@ -85,3 +85,39 @@ class TagExtractor:
         meta.save()
         return EasyID3(self._file_path)
 
+    def _update_info(self):
+        """
+        Filling track_info dict with values
+        """
+        track = MP3(self._file_path).info.__dict__
+        bitrate = str(track['bitrate'])[:3]
+        length = track['length']
+        sample_rate = track['sample_rate']
+        track_size = os.path.getsize(self._file_path)
+        track_size = track_size / 1024 / 1024
+        self._track_info.update({'track_size': round(track_size, 2)})
+
+        try:
+            tag = EasyID3(self._file_path)
+        except mutagen.id3.ID3NoHeaderError:
+            tag = self._noHeaderError()
+
+        tag_list = tag.keys()
+
+        self._tag_edit_obj = tag
+
+        self._track_info.update({'quality': '{} kbps, {} Hz'.format(bitrate,sample_rate)})
+
+        minutes, seconds = divmod(length, 60)
+        minutes, seconds = int(minutes), int(seconds)
+        if seconds < 10:
+            seconds = '0' + str(seconds)
+        self._track_info.update({'length': '{}:{}'.format(minutes,seconds)})
+        for t in self.all_tag_list:
+            if t in tag_list:
+                try:
+                    self._track_info.update({t: tag[t][0]})
+                except IndexError:
+                    self._track_info.update({t: ''})
+            else:
+                self._track_info.update({t: ''})
