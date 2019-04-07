@@ -54,7 +54,7 @@ class TagExtractor:
         album = self._track_info['album']
         genre = self._track_info['genre']
         track_number = self._track_info['tracknumber']
-        year = self._track_info['year']
+        year = self._track_info['date']
         result = 'Track info: \nDuration: {}\nQuality: {}\nTrack size: {}\nmb\n{}\nArtist: {}'\
                  '\nTitle: {}\nAlbum: {}\nGenre: {}\nTrack number: {}\nYear: {}'\
             .format(duration, quality, track_size, '-' * 27, artist, title,
