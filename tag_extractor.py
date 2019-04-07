@@ -56,3 +56,19 @@ class TagExtractor:
             .format(duration, quality, track_size, '-' * 27, artist, title,
                     album, genre, track_number, year)
         return result
+
+    @property
+    def track_info(self):
+        """
+        Return track_info dictionary
+        :return: track_info dictionary
+        """
+        return self._track_info
+
+    @property
+    def file_path(self):
+        """
+        Return _path to file
+        :return: _path to file
+        """
+        return self._file_path
