@@ -121,3 +121,8 @@ class TagExtractor:
                     self._track_info.update({t: ''})
             else:
                 self._track_info.update({t: ''})
+
+
+if __name__ == '__main__':
+    x = TagExtractor('D:/муз/76_Eminem_feat._Joyner_Lucas-Lucky_You.mp3')
+    print(x)
