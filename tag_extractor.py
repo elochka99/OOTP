@@ -1,4 +1,8 @@
 import os
+import mutagen
+import mutagen.id3
+from mutagen.mp3 import MP3
+from mutagen.easyid3 import EasyID3
 
 class TagExtractor:
     """
@@ -72,3 +76,12 @@ class TagExtractor:
         :return: _path to file
         """
         return self._file_path
+
+    def _noHeaderError(self):
+
+        meta = mutagen.File(self._file_path, easy=True)
+        for t in self.all_tag_list: #t - tag
+            meta[t] = ''
+        meta.save()
+        return EasyID3(self._file_path)
+
