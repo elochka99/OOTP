@@ -1,11 +1,9 @@
 import os
-import mutagen
-import mutagen.id3
-from mutagen.mp3 import MP3
-from mutagen.easyid3 import EasyID3
 
 class TagExtractor:
-    """This class extract and view id3 tags in an mp3 file."""
+    """
+    This class extract and view id3 tags in an mp3 file
+    """
     def __init__(self, file_path):
         """
         Initialize the CLASS.
@@ -38,3 +36,23 @@ class TagExtractor:
         # if year field don`t fill, replace '' to '0'
         if self._track_info['date'] == '':
             self._track_info['date'] = '0'
+
+    def __str__(self):
+        """
+        Return track_info in user readable format
+        :return: track_info in user readable format
+        """
+        duration = self._track_info['length']
+        quality = self._track_info['quality']
+        track_size = self._track_info['track_size']
+        artist = self._track_info['artist']
+        title = self._track_info['title']
+        album = self._track_info['album']
+        genre = self._track_info['genre']
+        track_number = self._track_info['tracknumber']
+        year = self._track_info['year']
+        result = 'Track info: \nDuration: {}\nQuality: {}\nTrack size: {}\nmb\n{}\nArtist: {}'\
+                 '\nTitle: {}\nAlbum: {}\nGenre: {}\nTrack number: {}\nYear: {}'\
+            .format(duration, quality, track_size, '-' * 27, artist, title,
+                    album, genre, track_number, year)
+        return result
