@@ -79,15 +79,15 @@ class TagExtractor:
         return self._file_path
 
     def _noHeaderError(self):
-        #If track dond have any id3 tags, add them
-        #open track as file
+        # If track dond have any id3 tags, add them
+        # open track as file
         meta = mutagen.File(self._file_path, easy=True)
-        #add empty tags
+        # add empty tags
         for t in self.all_tag_list: #t - tag
             meta[t] = ''
-        #save our fie
+        # save our fie
         meta.save()
-        #again open our track
+        # again open our track
         return EasyID3(self._file_path)
 
     def _update_info(self):
