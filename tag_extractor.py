@@ -4,6 +4,7 @@ import mutagen.id3
 from mutagen.mp3 import MP3
 from mutagen.easyid3 import EasyID3
 
+
 class TagExtractor:
     """
     This class extract and view id3 tags in an mp3 file
@@ -78,37 +79,57 @@ class TagExtractor:
         return self._file_path
 
     def _noHeaderError(self):
-
+        #If track dond have any id3 tags, add them
+        #open track as file
         meta = mutagen.File(self._file_path, easy=True)
+        #add empty tags
         for t in self.all_tag_list: #t - tag
             meta[t] = ''
+        #save our fie
         meta.save()
+        #again open our track
         return EasyID3(self._file_path)
 
     def _update_info(self):
         """
         Filling track_info dict with values
         """
+        # -- Track info
+        # get dictionary of information about track
         track = MP3(self._file_path).info.__dict__
+        # get bitrate (cut string to the desired size)
         bitrate = str(track['bitrate'])[:3]
+        # get length of track (in seconds)
         length = track['length']
+        # get sample rate of track (in Hz)
         sample_rate = track['sample_rate']
+        # get track size in bytes
         track_size = os.path.getsize(self._file_path)
+        # convert track size to mb
         track_size = track_size / 1024 / 1024
         self._track_info.update({'track_size': round(track_size, 2)})
 
+
+        # -- Tag info
+        # all tags which must be in track_info dict
         try:
+            # get dictionary of all available tags in current track
             tag = EasyID3(self._file_path)
         except mutagen.id3.ID3NoHeaderError:
             tag = self._noHeaderError()
 
+        # artist of available tags
         tag_list = tag.keys()
 
+        # -- for editing
         self._tag_edit_obj = tag
 
+        # -- Update track_info dict
         self._track_info.update({'quality': '{} kbps, {} Hz'.format(bitrate,sample_rate)})
 
+        # convert seconds to minutes: seconds format
         minutes, seconds = divmod(length, 60)
+        # convert to integer
         minutes, seconds = int(minutes), int(seconds)
         if seconds < 10:
             seconds = '0' + str(seconds)
@@ -118,6 +139,7 @@ class TagExtractor:
                 try:
                     self._track_info.update({t: tag[t][0]})
                 except IndexError:
+                    # if track tags has incorrect format
                     self._track_info.update({t: ''})
             else:
                 self._track_info.update({t: ''})
