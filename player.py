@@ -15,3 +15,23 @@ class Player:
                 raise ValueError('_path must be str')
         mixer.init()
         mixer.music.load(file_path)  #load track
+
+    @staticmethod
+    def play():
+        mixer.music.play()
+
+    @staticmethod
+    def pause():
+        mixer.music.pause()
+
+    @staticmethod
+    def unpause():
+        mixer.music.unpause()
+
+    @staticmethod
+    def stop():
+        mixer.music.stop()
+
+
+if __name__ == '__main__':
+    pass
