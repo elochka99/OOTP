@@ -129,10 +129,21 @@ class Tag(QMainWindow):
                 else:
                     continue
                 self.progressBar.setValue(completed)
-                completed += 100 /  len(os.listdir(folders_items)) + 0.1
+                completed += 100 / len(os.listdir(folders_items)) + 0.1
         self.progressBar.close()
         self.stetusBar.showMessage('Added' + str(len(self.files)) + ' tracks')
 
         self.update_tracks_table()
+
+    def update_tag_table(self, file):
+        for count in range(1, 2):
+            for row, tag in enumerate(self.tags_str_keys):
+                new_item = QTableWidgetItem(file.track_info[tag])
+                self.tagsTable.setItem(row, count, new_item)
+                if count < 2:
+                    t_item = self.tagsTable.item(row, count)
+                    t_item.setFlags(
+                        Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable
+                        | Qt.ItemIsEnabled)
 
 
