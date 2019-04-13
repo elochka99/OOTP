@@ -73,7 +73,15 @@ class Tag(QMainWindow):
                 stop_action = self.ui.actionStop
                 stop_action.triggered.connect(self.stop)
 
+    def play(self):
+        if Tag.bool_:
+            self.player.play()
+            Tag.bool_ = False
+        self.player.unpause()
 
+    def pause(self):
+        self.player.pause()
 
-
-
+    def stop(self):
+        self.player.stop()
+        Tag.bool_ = True
