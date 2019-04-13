@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
     QProgressBar, QMessageBox, QTableWidgetItem, QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
+import resource_rс
 from player import Player
 from tag_extractor import TagExtractor
 
@@ -33,6 +34,7 @@ class Tag(QMainWindow):
         self.tracksTable.horizontalHeader().setStyleSheet(stylesheet)
         self.tagsTable.horizontalHeader().setStyleSheet(stylesheet)
 
+        self.initUi()
     def initUi(self):
         """
         Initialize gui
