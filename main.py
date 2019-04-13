@@ -2,11 +2,11 @@ import os
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
-    QProgressBar,QMessageBox, QTableWidgetItem, QWidget
+    QProgressBar, QMessageBox, QTableWidgetItem, QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
-from .player import Player
-from .tag_extractor import TagExtractor
+from player import Player
+from tag_extractor import TagExtractor
 
 
 class Tag(QMainWindow):
