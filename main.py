@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
     QProgressBar,QMessageBox, QTableWidgetItem, QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
-from player import Player
+from .player import Player
 
 
 class Tag(QMainWindow):
