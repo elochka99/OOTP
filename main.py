@@ -1,3 +1,4 @@
+import os
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
     QProgressBar,QMessageBox, QTableWidgetItem, QWidget
@@ -106,3 +107,32 @@ class Tag(QMainWindow):
         if file_name:
             self.files.append(TagExtractor(file_name))
         self.update_tracks_table()
+
+    def show_folder_dialog(self):
+        self.files.clear()
+        if not Tag.bool_:
+            self.stop()
+        folders_items = QFileDialog\
+            .getExistingDirectory(self, 'Open folder', '/home',
+                                  QFileDialog.ShowDirsOnly
+                                  | QFileDialog.DontResolveSymlinks)
+        completed = 0  # for progress bar
+        self.progressBar.setMaximumSize(180, 20)
+        self.progressBar.addPermanentWidget(self.progressBar)
+        self.statusBar.showMessage('Load songs...')
+        if folders_items:
+            for item in os.listdir(folders_items):
+                path = folders_items + '/' + item
+                if os.path.isfile(path):
+                    self.files.append(
+                        TagExtractor(folders_items + '/' + item))
+                else:
+                    continue
+                self.progressBar.setValue(completed)
+                completed += 100 /  len(os.listdir(folders_items)) + 0.1
+        self.progressBar.close()
+        self.stetusBar.showMessage('Added' + str(len(self.files)) + ' tracks')
+
+        self.update_tracks_table()
+
+
