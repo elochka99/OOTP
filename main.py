@@ -5,13 +5,18 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
     QProgressBar, QMessageBox, QTableWidgetItem, QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
-import resource_rс
+# import resource_rс
 from player import Player
 from tag_extractor import TagExtractor
 
 
 class Tag(QMainWindow):
-    bool_ = True #for player (play/pause)
+    """
+    Gui class.
+
+    This class contain main window and application gui.
+    """
+    bool_ = True  # for player (play/pause)
 
     def __init__(self):
         super().__init__()
@@ -25,36 +30,50 @@ class Tag(QMainWindow):
         self.tagsTable = self.ui.tableWidget
         self.progressBar = QProgressBar()
 
+        # -- all imported tracks_information
         self.files = []
         self.current_file_index = 0
         self.tags_str_keys = ['artist', 'title', 'album', 'genre',
                               'tracknuber', 'date', 'quality']
 
+        # -- set stylesheet
         stylesheet = "::section{Background-color:rgb(204,204,204);}"
         self.tracksTable.horizontalHeader().setStyleSheet(stylesheet)
         self.tagsTable.horizontalHeader().setStyleSheet(stylesheet)
 
         self.initUi()
+
     def initUi(self):
         """
         Initialize gui
         """
 
+        # -- resize column
         self.tracksTable.resizeColumnToContents(1)
+        # -- activate cell
         self.tracksTable.cellClicked.connect(self.cell_clicked) #coord
 
+        # -- actions
+        # add folder action
         add_folder_action = self.ui.actionAdd_Folder
         add_folder_action.triggered.connect(self.show_folder_dialog)
 
+        # add file action
         add_file_action = self.ui.actionAdd_File
         add_file_action.triggered.connect(self.show_file_dialog)
 
+        # close app action
         exit_action = self.ui.actionExit
         exit_action.triggered.connect(self.show_quit_message)
 
         self.ui.show()
 
     def cell_clicked(self, r, c):
+        """
+        When cell clicked slot.
+        :param r: row
+        :param c: count
+        """
 
         item = self.tracksTable.item(r, 2) #title
         for file in self.files:
@@ -64,35 +83,44 @@ class Tag(QMainWindow):
                                                    file.file_path))
                 self.current_file_index = self.files.index(file)
                 self.update_tag_table(file)
-
+                # -- player actions
+                # play action
                 if Tag.bool_:
                     play_action = self.ui.actionPlay
-
+                    # create instance of Player object
                     self.player = Player(file.file_path)
                     Tag.bool_ = True
                     play_action.triggered.connect(self.play)
 
+                    # pause action
                     pause_action = self.ui.actionPause
                     pause_action.triggered.connect(self.pause)
 
+                # stop action
                 stop_action = self.ui.actionStop
                 stop_action.triggered.connect(self.stop)
 
+    # -- slots for player
     def play(self):
+        # use for start playing
         if Tag.bool_:
             self.player.play()
             Tag.bool_ = False
         self.player.unpause()
 
     def pause(self):
+        # use for pause playing
         self.player.pause()
 
     def stop(self):
+        # stop playing
         self.player.stop()
         Tag.bool_ = True
 
     def show_quit_message(self):
-
+        """
+        Show quit window.
+        """
         reply = QMessageBox.question(self, 'Quit massage', 'Are you sure want'
                                                            'to exit Music Tag'
                                                            'Viever?',
@@ -102,6 +130,10 @@ class Tag(QMainWindow):
             self.ui.close()
 
     def show_file_dialog(self):
+        """
+        Displays file selection window.
+        :return:
+        """
         self.files.clear()
         if not Tag.bool_:
             self.stop()
@@ -109,9 +141,13 @@ class Tag(QMainWindow):
                                                 '*.mp3')[0]
         if file_name:
             self.files.append(TagExtractor(file_name))
+        # update trackTable widget
         self.update_tracks_table()
 
     def show_folder_dialog(self):
+        """
+        Displays folder selection window
+        """
         self.files.clear()
         if not Tag.bool_:
             self.stop()
@@ -123,6 +159,7 @@ class Tag(QMainWindow):
         self.progressBar.setMaximumSize(180, 20)
         self.progressBar.addPermanentWidget(self.progressBar)
         self.statusBar.showMessage('Load songs...')
+        # -- add TagExtractor objects to files list
         if folders_items:
             for item in os.listdir(folders_items):
                 path = folders_items + '/' + item
@@ -135,10 +172,14 @@ class Tag(QMainWindow):
                 completed += 100 / len(os.listdir(folders_items)) + 0.1
         self.progressBar.close()
         self.stetusBar.showMessage('Added' + str(len(self.files)) + ' tracks')
-
+        # -- update trackTable widget
         self.update_tracks_table()
 
     def update_tag_table(self, file):
+        """
+        Fills the tag table with values.
+        :param file: file
+        """
         for count in range(1, 2):
             for row, tag in enumerate(self.tags_str_keys):
                 new_item = QTableWidgetItem(file.track_info[tag])
@@ -149,8 +190,10 @@ class Tag(QMainWindow):
                         Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable
                         | Qt.ItemIsEnabled)
 
-
     def update_tracks_table(self):
+        """
+        Fills the track table with values.
+        """
         self.tracksTable.setRowCount(len(self.files))
         keys = ['artist', 'length', 'title']
         for r, item in enumerate(self.files):
@@ -161,6 +204,7 @@ class Tag(QMainWindow):
                 t_item.setFlags(Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable
                                 | Qt.ItemIsEnabled)
                 item_for_icon = self.trackTable.item(r, 0)
+                # set item icon
                 item_for_icon.setIcon(QIcon(':/icons/icons/song_icon.png'))
 
 
