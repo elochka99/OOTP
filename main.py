@@ -164,8 +164,9 @@ class Tag(QMainWindow):
             for item in os.listdir(folders_items):
                 path = folders_items + '/' + item
                 if os.path.isfile(path):
-                    self.files.append(
-                        TagExtractor(folders_items + '/' + item))
+                    if path.endswith('.mp3'):
+                        self.files.append(
+                            TagExtractor(folders_items + '/' + item))
                 else:
                     continue
                 self.progressBar.setValue(completed)
@@ -203,7 +204,7 @@ class Tag(QMainWindow):
                 t_item = self.tracksTable.item(r, c)  # get item
                 t_item.setFlags(Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable
                                 | Qt.ItemIsEnabled)
-                item_for_icon = self.trackTable.item(r, 0)
+                item_for_icon = self.tracksTable.item(r, 0)
                 # set item icon
                 item_for_icon.setIcon(QIcon(':/icons/icons/song_icon.png'))
 
