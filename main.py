@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
     QProgressBar,QMessageBox, QTableWidgetItem, QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
+from player import Player
 
 
 class Tag(QMainWindow):
@@ -47,6 +48,31 @@ class Tag(QMainWindow):
         exit_action.triggered.connect(self.show_quit_message)
 
         self.ui.show()
+
+    def cell_clicked(self, r, c):
+
+        item = self.tracksTable.item(r, 2) #title
+        for file in self.files:
+            if item.text() == file.track_info['title']:
+                self.statusBar.showMessage('Track size: {} mb File path: {}'
+                                           .format(file.track_info['track_size'],
+                                                   file.file_path))
+                self.current_file_index = self.files.index(file)
+                self.update_tag_table(file)
+
+                if Tag.bool_:
+                    play_action = self.ui.actionPlay
+
+                    self.player = Player(file.file_path)
+                    Tag.bool_ = True
+                    play_action.triggered.connect(self.play)
+
+                    pause_action = self.ui.actionPause
+                    pause_action.triggered.connect(self.pause)
+
+                stop_action = self.ui.actionStop
+                stop_action.triggered.connect(self.stop)
+
 
 
 
