@@ -29,6 +29,25 @@ class Tag(QMainWindow):
         self.tracksTable.horizontalHeader().setStyleSheet(stylesheet)
         self.tagsTable.horizontalHeader().setStyleSheet(stylesheet)
 
+    def initUi(self):
+        """
+        Initialize gui
+        """
+
+        self.tracksTable.resizeColumnToContents(1)
+        self.tracksTable.cellClicked.connect(self.cell_clicked) #coord
+
+        add_folder_action = self.ui.actionAdd_Folder
+        add_folder_action.triggered.connect(self.show_folder_dialog)
+
+        add_file_action = self.ui.actionAdd_File
+        add_file_action.triggered.connect(self.show_file_dialog)
+
+        exit_action = self.ui.actionExit
+        exit_action.triggered.connect(self.show_quit_message)
+
+        self.ui.show()
+
 
 
 
