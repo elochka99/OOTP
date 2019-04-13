@@ -147,3 +147,16 @@ class Tag(QMainWindow):
                         | Qt.ItemIsEnabled)
 
 
+    def update_tracks_table(self):
+        self.tracksTable.setRowCount(len(self.files))
+        keys = ['artist', 'length', 'title']
+        for r, item in enumerate(self.files):
+            for c, key in enumerate(keys):
+                new_item = QTableWidgetItem(item.track_info[key])
+                self.tracksTable.setItem(r, c, new_item)
+                t_item = self.tracksTable.item(r, c)  # get item
+                t_item.setFlags(Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable
+                                | Qt.ItemIsEnabled)
+                item_for_icon = self.trackTable.item(r, 0)
+                item_for_icon.setIcon(QIcon(':/icons/icons/song_icon.png'))
+
