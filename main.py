@@ -1,4 +1,5 @@
 import os
+import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
     QProgressBar,QMessageBox, QTableWidgetItem, QWidget
@@ -160,3 +161,8 @@ class Tag(QMainWindow):
                 item_for_icon = self.trackTable.item(r, 0)
                 item_for_icon.setIcon(QIcon(':/icons/icons/song_icon.png'))
 
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    ex = Tag()
+    sys.exit(app.exec())
