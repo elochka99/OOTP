@@ -85,3 +85,14 @@ class Tag(QMainWindow):
     def stop(self):
         self.player.stop()
         Tag.bool_ = True
+
+    def show_quit_message(self):
+
+        reply = QMessageBox.question(self, 'Quit massage', 'Are you sure want'
+                                                           'to exit Music Tag'
+                                                           'Viever?',
+                                     QMessageBox.Yes | QMessageBox.No,
+                                     QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.ui.close()
+
