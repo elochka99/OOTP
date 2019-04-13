@@ -377,7 +377,7 @@ background-color: rgb(247, 247, 247);</string>
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionAdd_Folder"/>
    <addaction name="actionAdd_File"/>
@@ -430,8 +430,8 @@ background-color: rgb(247, 247, 247);</string>
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../proga/proga/resource.qrc">
-     <normaloff>:/icons/icons/add_folder_icon.png</normaloff>:/icons/icons/add_folder_icon.png</iconset>
+    <iconset>
+     <normaloff>icons/add_folder_icon.png</normaloff>icons/add_folder_icon.png</iconset>
    </property>
    <property name="text">
     <string>Ope&amp;n Folder</string>
@@ -451,8 +451,8 @@ background-color: rgb(247, 247, 247);</string>
   </action>
   <action name="actionAdd_File">
    <property name="icon">
-    <iconset resource="../../proga/proga/resource.qrc">
-     <normaloff>:/icons/icons/add_file_icon.png</normaloff>:/icons/icons/add_file_icon.png</iconset>
+    <iconset>
+     <normaloff>icons/add_file_icon.png</normaloff>icons/add_file_icon.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Open File</string>
@@ -469,8 +469,8 @@ background-color: rgb(247, 247, 247);</string>
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="../../proga/proga/resource.qrc">
-     <normaloff>:/icons/icons/exit_icon.png</normaloff>:/icons/icons/exit_icon.png</iconset>
+    <iconset>
+     <normaloff>icons/exit_icon.png</normaloff>icons/exit_icon.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Exit</string>
@@ -487,8 +487,8 @@ background-color: rgb(247, 247, 247);</string>
   </action>
   <action name="actionPlay">
    <property name="icon">
-    <iconset resource="../../proga/proga/resource.qrc">
-     <normaloff>:/icons/icons/play_icon.png</normaloff>:/icons/icons/play_icon.png</iconset>
+    <iconset>
+     <normaloff>icons/play_icon.png</normaloff>icons/play_icon.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Play</string>
@@ -508,8 +508,8 @@ background-color: rgb(247, 247, 247);</string>
   </action>
   <action name="actionPause">
    <property name="icon">
-    <iconset resource="../../proga/proga/resource.qrc">
-     <normaloff>:/icons/icons/pause_icon.png</normaloff>:/icons/icons/pause_icon.png</iconset>
+    <iconset>
+     <normaloff>icons/pause_icon.png</normaloff>icons/pause_icon.png</iconset>
    </property>
    <property name="text">
     <string>P&amp;ause</string>
@@ -526,8 +526,8 @@ background-color: rgb(247, 247, 247);</string>
   </action>
   <action name="actionStop">
    <property name="icon">
-    <iconset resource="../../proga/proga/resource.qrc">
-     <normaloff>:/icons/icons/stop_icon.png</normaloff>:/icons/icons/stop_icon.png</iconset>
+    <iconset>
+     <normaloff>icons/stop_icon.png</normaloff>icons/stop_icon.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Stop</string>
@@ -544,8 +544,8 @@ background-color: rgb(247, 247, 247);</string>
   </action>
   <action name="actionSearch_on_Web">
    <property name="icon">
-    <iconset resource="../../proga/proga/resource.qrc">
-     <normaloff>:/icons/icons/web_search_icon.png</normaloff>:/icons/icons/web_search_icon.png</iconset>
+    <iconset>
+     <normaloff>icons/web_search_icon.png</normaloff>icons/web_search_icon.png</iconset>
    </property>
    <property name="text">
     <string>Search on Web</string>
