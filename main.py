@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from .player import Player
+from .tag_extractor import TagExtractor
 
 
 class Tag(QMainWindow):
@@ -96,3 +97,12 @@ class Tag(QMainWindow):
         if reply == QMessageBox.Yes:
             self.ui.close()
 
+    def show_file_dialog(self):
+        self.files.clear()
+        if not Tag.bool_:
+            self.stop()
+        file_name = QFileDialog.getOpenFileName(self, 'Open file', '/home',
+                                                '*.mp3')[0]
+        if file_name:
+            self.files.append(TagExtractor(file_name))
+        self.update_tracks_table()
