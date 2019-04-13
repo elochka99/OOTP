@@ -71,6 +71,7 @@ class Tag(QMainWindow):
     def cell_clicked(self, r, c):
         """
         When cell clicked slot.
+
         :param r: row
         :param c: count
         """
@@ -132,7 +133,6 @@ class Tag(QMainWindow):
     def show_file_dialog(self):
         """
         Displays file selection window.
-        :return:
         """
         self.files.clear()
         if not Tag.bool_:
