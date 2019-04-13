@@ -34,7 +34,7 @@ class Tag(QMainWindow):
         self.files = []
         self.current_file_index = 0
         self.tags_str_keys = ['artist', 'title', 'album', 'genre',
-                              'tracknuber', 'date', 'quality']
+                              'tracknumber', 'date', 'quality']
 
         # -- set stylesheet
         stylesheet = "::section{Background-color:rgb(204,204,204);}"
@@ -151,28 +151,28 @@ class Tag(QMainWindow):
         self.files.clear()
         if not Tag.bool_:
             self.stop()
-        folders_items = QFileDialog\
+        folder_items = QFileDialog \
             .getExistingDirectory(self, 'Open folder', '/home',
                                   QFileDialog.ShowDirsOnly
                                   | QFileDialog.DontResolveSymlinks)
         completed = 0  # for progress bar
         self.progressBar.setMaximumSize(180, 20)
-        self.progressBar.addPermanentWidget(self.progressBar)
+        self.statusBar.addPermanentWidget(self.progressBar)
         self.statusBar.showMessage('Load songs...')
         # -- add TagExtractor objects to files list
-        if folders_items:
-            for item in os.listdir(folders_items):
-                path = folders_items + '/' + item
+        if folder_items:
+            for item in os.listdir(folder_items):
+                path = folder_items + '/' + item
                 if os.path.isfile(path):
                     if path.endswith('.mp3'):
                         self.files.append(
-                            TagExtractor(folders_items + '/' + item))
+                            TagExtractor(folder_items + '/' + item))
                 else:
                     continue
                 self.progressBar.setValue(completed)
-                completed += 100 / len(os.listdir(folders_items)) + 0.1
+                completed += 100 / len(os.listdir(folder_items)) + 0.1
         self.progressBar.close()
-        self.stetusBar.showMessage('Added' + str(len(self.files)) + ' tracks')
+        self.statusBar.showMessage('Added' + str(len(self.files)) + ' tracks')
         # -- update trackTable widget
         self.update_tracks_table()
 
