@@ -24,7 +24,7 @@ class Tag(QMainWindow):
         self.ui.setWindowTitle('Music Tag Viewer')
         self.ui.setWindowIcon(QIcon(':/icons/icons/window_icon.png'))
         self.ui.setWindowFlags(Qt.WindowMinimizeButtonHint |
-                               Qt.WindowMaximizeButtonHint)
+                               Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.statusBar = self.ui.statusBar()
         self.tracksTable = self.ui.tableWidgetItems
         self.tagsTable = self.ui.tableWidget
@@ -217,6 +217,18 @@ class Tag(QMainWindow):
 
     def show_web_search_dialog(self):
         self.searchDialog.ui.show()
+
+
+class SearchDialog(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = uic.loadUi('search_on_web.ui')
+        self.ui.setWindowTitle('Search track on Web')
+        self.ui.setWindowIcon(QIcon(':/icons/icons/web_search_icon.png'))
+        self.ui.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
+        self.search_btn = self.ui.searchButton
+        self.url = self.ui.url
+        self.search_btn.clicked.connect(self.btn_clicked)
 
 
 if __name__ == "__main__":
