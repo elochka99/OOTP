@@ -40,6 +40,7 @@ class Tag(QMainWindow):
         stylesheet = "::section{Background-color:rgb(204,204,204);}"
         self.tracksTable.horizontalHeader().setStyleSheet(stylesheet)
         self.tagsTable.horizontalHeader().setStyleSheet(stylesheet)
+        self.searchDialog = SearchDialog()  # for web search
 
         self.initUi()
 
@@ -65,6 +66,11 @@ class Tag(QMainWindow):
         # close app action
         exit_action = self.ui.actionExit
         exit_action.triggered.connect(self.show_quit_message)
+
+        # search on web action
+        search_on_web_action = self.ui.actionSearch_on_Web
+        search_on_web_action.triggered.connect(self.show_web_search_dialog)
+
 
         self.ui.show()
 
@@ -129,6 +135,7 @@ class Tag(QMainWindow):
                                      QMessageBox.No)
         if reply == QMessageBox.Yes:
             self.ui.close()
+            self.searchDialog.ui.close()
 
     def show_file_dialog(self):
         """
@@ -207,6 +214,9 @@ class Tag(QMainWindow):
                 item_for_icon = self.tracksTable.item(r, 0)
                 # set item icon
                 item_for_icon.setIcon(QIcon(':/icons/icons/song_icon.png'))
+
+    def show_web_search_dialog(self):
+        self.searchDialog.ui.show()
 
 
 if __name__ == "__main__":
