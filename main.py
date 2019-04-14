@@ -8,6 +8,7 @@ from PyQt5.QtGui import QIcon
 # import resource_rс
 from player import Player
 from tag_extractor import TagExtractor
+import webbrowser
 
 
 class Tag(QMainWindow):
@@ -229,6 +230,13 @@ class SearchDialog(QWidget):
         self.search_btn = self.ui.searchButton
         self.url = self.ui.url
         self.search_btn.clicked.connect(self.btn_clicked)
+
+    def btn_clicked(self):
+        usr_inp = self.url.text()
+        if usr_inp != '':
+            webbrowser.open('https://soundcloud.com/search/sounds?q={}'.
+                            format(usr_inp))
+            self.ui.hide()
 
 
 if __name__ == "__main__":
