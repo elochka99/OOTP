@@ -20,6 +20,9 @@ class Tag(QMainWindow):
     bool_ = True  # for player (play/pause)
 
     def __init__(self):
+        """
+        class initialization function
+        """
         super().__init__()
         self.ui = uic.loadUi('tag_editor.ui')
         self.ui.setWindowTitle('Music Tag Viewer')
@@ -110,18 +113,24 @@ class Tag(QMainWindow):
 
     # -- slots for player
     def play(self):
-        # use for start playing
+        """
+        use for start playing
+        """
         if Tag.bool_:
             self.player.play()
             Tag.bool_ = False
         self.player.unpause()
 
     def pause(self):
-        # use for pause playing
+        """
+        use for pause playing
+        """
         self.player.pause()
 
     def stop(self):
-        # stop playing
+        """
+        use for stop playing
+        """
         self.player.stop()
         Tag.bool_ = True
 
@@ -217,11 +226,22 @@ class Tag(QMainWindow):
                 item_for_icon.setIcon(QIcon(':/icons/icons/song_icon.png'))
 
     def show_web_search_dialog(self):
+        """
+        Slot.
+
+        Activate web search dialog.
+        """
         self.searchDialog.ui.show()
 
 
 class SearchDialog(QWidget):
+    """
+    This class use for displays web search dialog.
+    """
     def __init__(self):
+        """
+        class initialization function
+        """
         super().__init__()
         self.ui = uic.loadUi('search_on_web.ui')
         self.ui.setWindowTitle('Search track on Web')
@@ -232,6 +252,9 @@ class SearchDialog(QWidget):
         self.search_btn.clicked.connect(self.btn_clicked)
 
     def btn_clicked(self):
+        """
+        This function shows the action by pressing the button.
+        """
         usr_inp = self.url.text()
         if usr_inp != '':
             webbrowser.open('https://soundcloud.com/search/sounds?q={}'.
