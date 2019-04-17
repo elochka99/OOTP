@@ -29,7 +29,7 @@ class Player:
         else:
             if file is not None:
                 raise ValueError('_path must be str')
-        mixer.music.load(file)  #load track
+        mixer.music.load(file)  # load track
         return file
 
     def play(self):
