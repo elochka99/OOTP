@@ -2,6 +2,7 @@ import os
 from pygame import mixer
 from pattern import singleton
 
+
 @singleton
 class Player:
     """
