@@ -23,7 +23,7 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QTableWidget" name="tableWidgetItems">
+      <widget class="QTableWidget" name="tracksTable">
        <property name="toolTip">
         <string>Сontains all files imported by the user</string>
        </property>
@@ -86,7 +86,7 @@ background-color: rgb(247, 247, 247);</string>
         </property>
        </column>
       </widget>
-      <widget class="QTableWidget" name="tableWidget">
+      <widget class="QTableWidget" name="tagsTable">
        <property name="toolTip">
         <string>Contains all the tags that are in the selected track</string>
        </property>
