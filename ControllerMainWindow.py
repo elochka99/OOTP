@@ -1,9 +1,10 @@
 from viewMainWindow import MainWindow
 from pattern import singleton
-from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog, QTableWidgetItem
 from player import Player
 from TagExtractor import TagExtractor
 import os
+from PyQt5.QtCore import Qt
 
 
 @singleton
@@ -127,3 +128,19 @@ class Main(object):
         self.progressBar.close()
         self.ui.statusBar().showMessage('Added' + str(len(self.files)) + ' tracks')
         self.update_tracks_table()
+
+    def update_tag_table(self, file):
+        """
+        Fills the tag table with values.
+        :param file: file
+        """
+        for count in range(1, 2):
+            for row, tag in enumerate(self.tags_str_keys):
+                new_item = QTableWidgetItem(file.track_info[tag])
+                self.ui.tagsTable.setItem(row, count, new_item)
+                if count < 2:
+                    t_item = self.ui.tagsTable.item(row, count)
+                    t_item.setFlags(Qt.ItemIsDragEnabled
+                                    | Qt.ItemIsUserCheckable
+                                    | Qt.ItemIsEnabled)
+
