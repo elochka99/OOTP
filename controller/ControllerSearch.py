@@ -1,5 +1,5 @@
-from viewSearch import SearchDialog
-from pattern import singleton
+from view.viewSearch import SearchDialog
+from core.pattern import singleton
 import webbrowser
 
 

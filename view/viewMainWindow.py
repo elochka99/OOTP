@@ -1,4 +1,4 @@
-from pattern import singleton
+from core.pattern import singleton
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
