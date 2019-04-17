@@ -56,6 +56,13 @@ class Player:
         """
         mixer.music.stop()
 
+    @property
+    def volume(self):
+        return mixer.music.get_volume()
+
+    @volume.setter
+    def volume(self, volume):
+        mixer.music.set_volume(volume)
 
 if __name__ == '__main__':
     pass
