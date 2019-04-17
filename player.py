@@ -58,11 +58,20 @@ class Player:
 
     @property
     def volume(self):
+        """
+        Volume of playing
+        :return: volume
+        """
         return mixer.music.get_volume()
 
     @volume.setter
     def volume(self, volume):
+        """
+        Set volume
+        :param volume: volume value
+        """
         mixer.music.set_volume(volume)
+
 
 if __name__ == '__main__':
     pass
