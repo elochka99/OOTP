@@ -1,7 +1,6 @@
 from viewMainWindow import MainWindow
 from pattern import singleton
-from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog, \
-    QTableWidgetItem, QApplication
+from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog, QTableWidgetItem, QApplication
 from player import Player
 from ModelTagExtractor import TagExtractor
 import os
@@ -22,7 +21,9 @@ class Main(object):
         self.ui = MainWindow()
         self.ui.trigger(self.cell_clicked, self.show_folder_dialog,
                         self.show_file_dialog, self.show_quit_message,
-                        self.show_web_search_dialog, self.play, self.pause, self.stop)
+                        self.show_web_search_dialog, self.play, self.pause,
+                        self.stop, self.volume)
+        self.ui.volume.setValue(int(Player().volume * 100))
         self.files = []
         self.bool_ = False
         self.current_file_index = 0
@@ -163,6 +164,12 @@ class Main(object):
                                 | Qt.ItemIsEnabled)
                 item_for_icon = self.ui.tracksTable.item(r, 0)
                 item_for_icon.setIcon(QIcon('icons/song_icon.png'))
+
+    def volume(self):
+        """
+        Change volume
+        """
+        Player().volume = round(self.ui.volume.value() / 100, 2)
 
     def show_web_search_dialog(self):
         """
