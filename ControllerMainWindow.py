@@ -3,6 +3,7 @@ from pattern import singleton
 from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog
 from player import Player
 from TagExtractor import TagExtractor
+import os
 
 
 @singleton
@@ -95,4 +96,34 @@ class Main(object):
                                                 '/home', '*.mp3')[0]
         if file_name:
             self.files.append(TagExtractor(file_name))
+        self.update_tracks_table()
+
+    def show_folder_dialog(self):
+        """
+        Displays folder selection window
+        """
+        self.files.clear()
+        if not self.bool_:
+            self.stop()
+        folder_items = QFileDialog.getExistingDirectory(self.ui,
+                                                        'Open folder', '/home',
+                                                        QFileDialog.ShowDirsOnly
+                                                        | QFileDialog.DontResolveSymlinks)
+        completed = 0
+        self.progressBar.setMaximumSize(180, 20)
+        self.ui.statusBar().addPermanentWidget(self.progressBar)
+        self.ui.statusBar().showMessage('Load songs...')
+        if folder_items:
+            for item in os.listdir(folder_items):
+                path = folder_items + '/' + item
+                if os.path.isfile(path):
+                    if path.endswith('.mp3'):
+                        self.files.append(
+                            TagExtractor(folder_items + '/' + item))
+                else:
+                    continue
+                self.progressBar.setValue(completed)
+                completed += 100 / len(os.listdir(folder_items)) + 0.1
+        self.progressBar.close()
+        self.ui.statusBar().showMessage('Added' + str(len(self.files)) + ' tracks')
         self.update_tracks_table()
