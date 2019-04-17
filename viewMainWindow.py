@@ -6,6 +6,9 @@ from PyQt5 import uic
 
 @singleton
 class MainWindow(QMainWindow):
+    """
+    class for MainWindow viev
+    """
     def __init__(self):
         """
         Initialize the CLASS.
