@@ -1,11 +1,13 @@
 from viewMainWindow import MainWindow
 from pattern import singleton
-from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog, QTableWidgetItem
+from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog, \
+    QTableWidgetItem, QApplication
 from player import Player
 from TagExtractor import TagExtractor
 import os
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
+import sys
 
 
 @singleton
@@ -169,3 +171,9 @@ class Main(object):
         Activate web search dialog.
         """
         self.searchDialog.ui.show()
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    ex = Main()
+    sys.exit(app.exec())
