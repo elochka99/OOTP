@@ -99,7 +99,8 @@ class Tag(QMainWindow):
                 if Tag.bool_:
                     play_action = self.ui.actionPlay
                     # create instance of Player object
-                    self.player = Player(file.file_path)
+                    self.player = Player()
+                    self.player.load(file.file_path)
                     Tag.bool_ = True
                     play_action.triggered.connect(self.play)
 
