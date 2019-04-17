@@ -6,6 +6,7 @@ from ModelTagExtractor import TagExtractor
 import os
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
+from ControllerSearch import Search
 import sys
 
 
@@ -177,7 +178,8 @@ class Main(object):
 
         Activate web search dialog.
         """
-        self.searchDialog.ui.show()
+        # self.searchDialog.ui.show()
+        Search().show()
 
 
 if __name__ == "__main__":

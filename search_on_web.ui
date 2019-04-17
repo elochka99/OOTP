@@ -40,7 +40,7 @@
   </layout>
  </widget>
  <!--<resources>-->
-  <!--<include location="../../proga/proga/resource.qrc"/>-->
+  <!--<include location="../old/resource.qrc"/>-->
  <!--</resources>-->
  <connections/>
 </ui>
