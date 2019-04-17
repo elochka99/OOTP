@@ -5,6 +5,7 @@ from player import Player
 from TagExtractor import TagExtractor
 import os
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 
 
 @singleton
@@ -144,3 +145,19 @@ class Main(object):
                                     | Qt.ItemIsUserCheckable
                                     | Qt.ItemIsEnabled)
 
+    def update_tracks_table(self):
+        """
+        Fills the track table with values.
+        """
+        self.ui.tracksTable.setRowCount(len(self.files))
+        keys = ['artist', 'length', 'title']
+        for r, item in enumerate(self.files):
+            for c, key in enumerate(keys):
+                new_item = QTableWidgetItem(item.track_info[key])
+                self.ui.tracksTable.setItem(r, c, new_item)
+                t_item = self.ui.tracksTable.item(r, c)
+                t_item.setFlags(Qt.ItemIsDragEnabled
+                                | Qt.ItemIsUserCheckable
+                                | Qt.ItemIsEnabled)
+                item_for_icon = self.ui.tracksTable.item(r, 0)
+                item_for_icon.setIcon(QIcon('icons/song_icon.png'))
