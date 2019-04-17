@@ -42,3 +42,17 @@ class Main(object):
                     self.played = self.current_file_index
                     Player().load(file.file_path)
                     self.bool_ = True
+
+    def play(self):
+        """
+        use for start playing
+        """
+        if self.played == self.current_file_index:
+            if self.bool_:
+                Player().play()
+                self.bool_ = False
+            Player().unpause()
+        else:
+            Player().stop()
+            Player().load(self.files[self.current_file_index].file_path)
+            Player().play()
