@@ -1,6 +1,6 @@
 from viewMainWindow import MainWindow
 from pattern import singleton
-from PyQt5.QtWidgets import QProgressBar
+from PyQt5.QtWidgets import QProgressBar, QMessageBox
 from player import Player
 
 @singleton
@@ -69,3 +69,15 @@ class Main(object):
         """
         Player().stop()
         self.bool_ = True
+
+    def show_quit_message(self):
+        """
+        Show quit window.
+        """
+        reply = QMessageBox.question(self.ui, 'Quit massage',
+                                     'Are you sure want to exit Music Tag Viever?',
+                                     QMessageBox.Yes | QMessageBox.No,
+                                     QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.ui.close()
+            self.searchDialog.ui.close()
