@@ -22,6 +22,7 @@ class TagExtractor:
         if not file_path.endswith('.mp3'):
             raise FileExistsError('this is not mp3 file')
         self._file_path = file_path
+        self.track_duration = 0
         # -- Globals. Include all information about track
         self._track_info = {}
         # all tags which must be in track_info dict
@@ -57,9 +58,9 @@ class TagExtractor:
         track_number = self._track_info['tracknumber']
         year = self._track_info['date']
         result = 'Track info: \nDuration: {}\nQuality: {}\nTrack size: {}\nmb\n{}\nArtist: {}'\
-                 '\nTitle: {}\nAlbum: {}\nGenre: {}\nTrack number: {}\nYear: {}'\
+                 '\nTitle: {}\nAlbum: {}\nGenre: {}\nTrack number: {}\nYear: {}\nDuration: {}'\
             .format(duration, quality, track_size, '-' * 27, artist, title,
-                    album, genre, track_number, year)
+                    album, genre, track_number, year, self.track_duration)
         return result
 
     @property
@@ -126,14 +127,14 @@ class TagExtractor:
 
         # -- Update track_info dict
         self._track_info.update({'quality': '{} kbps, {} Hz'.format(bitrate,sample_rate)})
-
+        self.track_duration = int(length)
         # convert seconds to minutes: seconds format
         minutes, seconds = divmod(length, 60)
         # convert to integer
         minutes, seconds = int(minutes), int(seconds)
         if seconds < 10:
             seconds = '0' + str(seconds)
-        self._track_info.update({'length': '{}:{}'.format(minutes,seconds)})
+        self._track_info.update({'length': '{}:{}'.format(minutes, seconds)})
         for t in self.all_tag_list:
             if t in tag_list:
                 try:
