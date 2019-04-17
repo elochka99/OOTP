@@ -30,8 +30,8 @@ class Tag(QMainWindow):
         self.ui.setWindowFlags(Qt.WindowMinimizeButtonHint |
                                Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.statusBar = self.ui.statusBar()
-        self.tracksTable = self.ui.tableWidgetItems
-        self.tagsTable = self.ui.tableWidget
+        self.tracksTable = self.ui.tracksTable
+        self.tagsTable = self.ui.tagsTable
         self.progressBar = QProgressBar()
 
         # -- all imported tracks_information
