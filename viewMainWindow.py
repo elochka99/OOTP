@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
 
     def trigger(self, cell_clicked, show_folder_dialog,
                 show_file_dialog, show_quit_message,
-                show_web_search_dialog, play, pause, stop):
+                show_web_search_dialog, play, pause, stop, volume):
         """
         Bind view elements to controller elements
         :param cell_clicked: action
@@ -38,6 +38,7 @@ class MainWindow(QMainWindow):
         :param play: action
         :param pause: action
         :param stop: action
+        :param volume: action
         """
 
         self.tracksTable.cellClicked.connect(cell_clicked)
@@ -48,3 +49,4 @@ class MainWindow(QMainWindow):
         self.actionPlay.triggered.connect(play)
         self.actionPause.triggered.connect(pause)
         self.actionStop.triggered.connect(stop)
+        self.volume.valueChanged.connect(volume)
