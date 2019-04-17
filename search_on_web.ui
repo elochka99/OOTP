@@ -39,8 +39,8 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../proga/proga/resource.qrc"/>
- </resources>
+ <!--<resources>-->
+  <!--<include location="../../proga/proga/resource.qrc"/>-->
+ <!--</resources>-->
  <connections/>
 </ui>

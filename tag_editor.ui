@@ -558,8 +558,8 @@ background-color: rgb(247, 247, 247);</string>
    </property>
   </action>
  </widget>
- <resources>
-  <include location="../../proga/proga/resource.qrc"/>
- </resources>
+ <!--<resources>-->
+  <!--<include location="../../proga/proga/resource.qrc"/>-->
+ <!--</resources>-->
  <connections/>
 </ui>
