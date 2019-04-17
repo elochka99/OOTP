@@ -7,7 +7,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 # import resource_rс
 from player import Player
-from tag_extractor import TagExtractor
+from TagExtractor import TagExtractor
 import webbrowser
 
 
