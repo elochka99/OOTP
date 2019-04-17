@@ -23,14 +23,24 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>30</height>
+        <height>43</height>
        </size>
       </property>
-      <widget class="QSlider" name="horizontalSlider">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <widget class="QSlider" name="volume">
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>0</y>
+         <y>10</y>
          <width>171</width>
          <height>30</height>
         </rect>
@@ -38,7 +48,13 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>20</height>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
         </size>
        </property>
        <property name="orientation">
@@ -51,7 +67,7 @@
          <x>20</x>
          <y>0</y>
          <width>41</width>
-         <height>31</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="text">
