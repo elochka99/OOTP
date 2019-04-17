@@ -1,27 +1,35 @@
 import os
 from pygame import mixer
+from pattern import singleton
 
-
+@singleton
 class Player:
     """
     This class can play mp3 track.
+    Controller mixer in PC
     """
-    def __init__(self, file_path=None):
+    def __init__(self):
+        """
+        Initialize mixer to play music file
+        """
+        mixer.init()
+
+    def load(self, file):
         """
         Initialize the class.
-        :param file_path: _path to mp3 file
+        :param file: _path to mp3 file
+        :return: play file
         """
-        if isinstance(file_path, str):
-            if not os.path.isfile(file_path):
+        if isinstance(file, str):
+            if not os.path.isfile(file):
                 raise FileNotFoundError('this _path does not conrain usr_input file')
-            if not file_path.endswith('.mp3'):
+            if not file.endswith('.mp3'):
                 raise FileExistsError('this is not mp3 file')
-            self._track_path = file_path
         else:
-            if file_path is not None:
+            if file is not None:
                 raise ValueError('_path must be str')
-        mixer.init()
-        mixer.music.load(file_path)  #load track
+        mixer.music.load(file)  #load track
+        return file
 
     @staticmethod
     def play():
