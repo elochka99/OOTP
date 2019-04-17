@@ -161,3 +161,11 @@ class Main(object):
                                 | Qt.ItemIsEnabled)
                 item_for_icon = self.ui.tracksTable.item(r, 0)
                 item_for_icon.setIcon(QIcon('icons/song_icon.png'))
+
+    def show_web_search_dialog(self):
+        """
+        Slot.
+
+        Activate web search dialog.
+        """
+        self.searchDialog.ui.show()
