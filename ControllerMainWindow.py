@@ -56,3 +56,16 @@ class Main(object):
             Player().stop()
             Player().load(self.files[self.current_file_index].file_path)
             Player().play()
+
+    def pause(self):
+        """
+        use for pause playing
+        """
+        Player().pause()
+
+    def stop(self):
+        """
+        use for stop playing
+        """
+        Player().stop()
+        self.bool_ = True
