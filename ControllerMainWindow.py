@@ -1,7 +1,9 @@
 from viewMainWindow import MainWindow
 from pattern import singleton
-from PyQt5.QtWidgets import QProgressBar, QMessageBox
+from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog
 from player import Player
+from TagExtractor import TagExtractor
+
 
 @singleton
 class Main(object):
@@ -81,3 +83,16 @@ class Main(object):
         if reply == QMessageBox.Yes:
             self.ui.close()
             self.searchDialog.ui.close()
+
+    def show_file_dialog(self):
+        """
+        Displays file selection window.
+        """
+        self.files.clear()
+        if not self.bool_:
+            self.stop()
+        file_name = QFileDialog.getOpenFileName(self.ui, 'Open file',
+                                                '/home', '*.mp3')[0]
+        if file_name:
+            self.files.append(TagExtractor(file_name))
+        self.update_tracks_table()
