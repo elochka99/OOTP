@@ -31,29 +31,25 @@ class Player:
         mixer.music.load(file)  #load track
         return file
 
-    @staticmethod
-    def play():
+    def play(self):
         """
         Start playing current file.
         """
         mixer.music.play()
 
-    @staticmethod
-    def pause():
+    def pause(self):
         """
         Pause current playing track.
         """
         mixer.music.pause()
 
-    @staticmethod
-    def unpause():
+    def unpause(self):
         """
         Continue playing current track, after pause.
         """
         mixer.music.unpause()
 
-    @staticmethod
-    def stop():
+    def stop(self):
         """
         Stop playing current track.
         """
