@@ -1,6 +1,6 @@
 import os
 from pygame import mixer
-from pattern import singleton
+from core.pattern import singleton
 
 
 @singleton

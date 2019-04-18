@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QApplication
 from sys import argv, exit
-from ControllerMainWindow import Main
+from controller.ControllerMainWindow import Main
 
 
 if __name__ == "__main__":

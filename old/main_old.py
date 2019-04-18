@@ -6,8 +6,8 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,\
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 # import resource_rс
-from player import Player
-from ModelTagExtractor import TagExtractor
+from core.player import Player
+from model.ModelTagExtractor import TagExtractor
 import webbrowser
 
 
