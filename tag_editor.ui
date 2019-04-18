@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>854</width>
-    <height>599</height>
+    <height>623</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -84,10 +84,19 @@
     </item>
     <item>
      <widget class="QSplitter" name="splitter">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
       <widget class="QTableWidget" name="tracksTable">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>210</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Сontains all files imported by the user</string>
        </property>
@@ -151,6 +160,12 @@ background-color: rgb(247, 247, 247);</string>
        </column>
       </widget>
       <widget class="QTableWidget" name="tagsTable">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>239</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Contains all the tags that are in the selected track</string>
        </property>
@@ -623,8 +638,6 @@ background-color: rgb(247, 247, 247);</string>
    </property>
   </action>
  </widget>
- <!--<resources>-->
-  <!--<include location="../old/resource.qrc"/>-->
- <!--</resources>-->
+ <resources/>
  <connections/>
 </ui>
