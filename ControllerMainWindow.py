@@ -1,8 +1,8 @@
-from view.viewMainWindow import MainWindow
-from core.pattern import singleton
+from viewMainWindow import MainWindow
+from pattern import singleton
 from PyQt5.QtWidgets import QProgressBar, QMessageBox, QFileDialog, QTableWidgetItem, QApplication
-from core.player import Player
-from model.ModelTagExtractor import TagExtractor
+from player import Player
+from ModelTagExtractor import TagExtractor
 import os
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
